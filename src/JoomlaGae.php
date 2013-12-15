@@ -78,7 +78,7 @@ class JoomlaGae
             $blob = new Blobs($this->options, $this->client);
             $file = $blob->get($this->repoOwner, 'joomla-cms', $data['sha']);
 
-            $this->createFile($data['path'], $file->content);
+            $this->createFile($data['path'], base64_decode($file->content));
         }
         else
         {
@@ -95,7 +95,14 @@ class JoomlaGae
 
     protected function createFile($path, $data = '')
     {
-        if (!file_put_contents('gs://'.$this->bucket.'/'.$path, $data))
+        require_once 'Context.php';
+
+        // Get Context options for give extension
+        $options = Context::getContextOptions(strrchr($path, '.'));
+
+        $ctx = stream_context_create($options);
+
+        if (!file_put_contents('gs://'.$this->bucket.'/'.$path, $data, 0, $ctx))
             throw new \Exception($php_errormsg);
     }
 }
