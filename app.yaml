@@ -1,0 +1,25 @@
+application: woodzu123
+version: 1
+runtime: php
+api_version: 1
+#threadsafe: true
+
+handlers:
+
+- url: /css
+  static_dir: css
+
+- url: /js
+  static_dir: js
+
+- url: /img
+  static_dir: img
+
+- url: /fonts
+  static_dir: fonts
+
+- url: /init\.php
+  script: init.php
+
+- url: /(.+)?/?
+  script: index.php

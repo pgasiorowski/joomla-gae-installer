@@ -1,0 +1,14 @@
+{
+    "name": "woodzu123/joomla-gae-installer",
+    "description": "Installs Joomla on Google AppEngine",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Piotr Gasiorowski",
+            "email": "woodzu123@gmail.com"
+        }
+    ],
+    "require": {
+        "joomla/github": "1.0"
+    }
+}
